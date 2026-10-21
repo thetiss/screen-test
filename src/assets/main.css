@@ -1,0 +1,100 @@
+:root {
+  --bg-0: #05080f;
+  --bg-1: #0a1120;
+  --bg-2: #0f1a2e;
+  --line: rgba(0, 229, 255, 0.12);
+  --grid: rgba(0, 229, 255, 0.06);
+  --text-1: #e6f1ff;
+  --text-2: #7a91b0;
+  --accent: #00e5ff;
+  --accent-2: #4dffd2;
+  --warn: #ffb84d;
+  --danger: #ff5470;
+  --card-bg: linear-gradient(135deg, rgba(10, 20, 40, 0.92) 0%, rgba(6, 12, 24, 0.88) 100%);
+  --card-border: linear-gradient(135deg, rgba(0, 229, 255, 0.55) 0%, rgba(77, 255, 210, 0.15) 100%);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: var(--text-1);
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(0, 60, 120, 0.25) 0%, transparent 60%),
+    radial-gradient(1000px 700px at 90% 100%, rgba(0, 180, 160, 0.15) 0%, transparent 55%),
+    var(--bg-0);
+  overflow: hidden;
+}
+
+#app { width: 100vw; height: 100vh; position: relative; }
+
+/* 全屏网格底纹 */
+.grid-bg {
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* 顶部标题栏 */
+.header {
+  position: absolute; top: 0; left: 0; right: 0; height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  background: linear-gradient(180deg, rgba(5, 8, 15, 0.9) 0%, transparent 100%);
+  border-bottom: 1px solid var(--line);
+  z-index: 10;
+  backdrop-filter: blur(6px);
+}
+.title-block { display: flex; align-items: baseline; gap: 14px; }
+.title-block .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.title-block h1 { font-size: 18px; letter-spacing: 3px; margin: 0; font-weight: 600; color: var(--text-1); }
+.title-block .sub { font-size: 12px; color: var(--text-2); letter-spacing: 2px; }
+.header-right { font-size: 11px; color: var(--text-2); letter-spacing: 1px; }
+.header-right .live { color: var(--accent); }
+
+/* 地图容器（伪 3D 由 echarts 内部阴影实现，不再叠加 CSS 3D） */
+.map-wrap {
+  position: absolute;
+  inset: 60px 0 0 0;
+}
+.map-3d {
+  position: absolute;
+  inset: 30px 20px 20px;
+}
+.map-3d .echart {
+  position: absolute;
+  inset: 0;
+}
+
+/* 底部信息栏 */
+.footer {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  background: linear-gradient(0deg, rgba(5, 8, 15, 0.9) 0%, transparent 100%);
+  border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--text-2); letter-spacing: 1px;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+}
+.legend { display: flex; gap: 16px; align-items: center; }
+.legend .item { display: flex; align-items: center; gap: 6px; }
+.legend .swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+/* 左下角操作提示 */
+.hint {
+  position: absolute; left: 24px; bottom: 60px;
+  font-size: 11px; color: var(--text-2);
+  padding: 10px 14px;
+  background: rgba(6, 12, 24, 0.5);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  letter-spacing: 1px;
+  z-index: 8;
+}
+.hint strong { color: var(--accent); font-weight: 500; }
